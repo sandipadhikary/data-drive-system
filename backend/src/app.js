@@ -1,4 +1,3 @@
-// src/app.js
 const express = require("express");
 const cors = require("cors");
 
@@ -8,8 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Test route
 app.get("/", (req, res) => {
-  res.send("Backend server is running...");
+  res.send("Backend server is running and connected to MongoDB!");
 });
 
 module.exports = app;
