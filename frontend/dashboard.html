@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Data Drive</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="container">
+
+
+    <h3>Create Folder</h3>
+    <form id="folderForm">
+      <input type="text" id="folderName" placeholder="New Folder Name" required>
+      <button type="submit" class="btn">Create Folder</button>
+    </form>
+
+    <h3>Folders</h3>
+    <ul id="foldersList"></ul>
+
+    <h3>Upload File</h3>
+    <form id="fileForm" enctype="multipart/form-data">
+      <input type="file" id="fileInput" required>
+      <select id="folderSelect">
+        <option value="">No Folder</option>
+      </select>
+      <button type="submit" class="btn">Upload</button>
+    </form>
+
+    <h3>Files</h3>
+    <ul id="filesList"></ul>
+        <div class="top-bar">
+      <h2>Dashboard</h2>
+      <button id="logoutBtn" class="btn logout-btn">Logout</button>
+    </div>
+  </div>
+  
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f5f8ff;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+  color: #1d3557;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #d1d9e6;
+  margin-bottom: 12px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+}
+
+.btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+  margin-top: 8px;
+}
+
+.btn:hover {
+  background: #0056d6;
+}
+
+/* Folder & File List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #e9f2ff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li span {
+  font-weight: 500;
+  color: #004da0;
+  cursor: pointer;
+}
+
+li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #007bff;
+}
+
+li button {
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+li button:hover {
+  background: #d40000;
+}
+
+/* Red Logout Button */
+.logout-btn {
+  width: 100%;
+  background: #ff3131;
+  padding: 12px;
+  font-size: 17px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  margin-top: 35px;
+  transition: 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+  background: #c40000;
+  transform: translateY(-3px);
+}
