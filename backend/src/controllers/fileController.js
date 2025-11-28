@@ -1,35 +1,49 @@
 const File = require("../models/fileModel");
+const path = require("path");
+const fs = require("fs");
 
-const createFile = async (req, res) => {
-  const { folder } = req.body;
+const uploadFile = async (req, res) => {
   if (!req.file) return res.status(400).json({ message: "No file uploaded" });
-  const file = await File.create({
-    name: req.file.originalname,
-    url: `/uploads/${req.file.filename}`,
-    folder: folder || null,
-    user: req.user._id
-  });
-  res.status(201).json(file);
+  const folder = req.body.folder || null;
+
+  try {
+    const file = await File.create({
+      name: req.file.originalname,
+      url: `/uploads/${req.file.filename}`,
+      folder,
+      user: req.user._id
+    });
+    res.status(201).json(file);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 const getFiles = async (req, res) => {
-  const files = await File.find({ user: req.user._id });
-  res.json(files);
-};
-
-const updateFile = async (req, res) => {
-  const file = await File.findById(req.params.id);
-  if (!file) return res.status(404).json({ message: "File not found" });
-  file.name = req.body.name || file.name;
-  await file.save();
-  res.json(file);
+  try {
+    const folderId = req.query.folder || null;
+    const query = { user: req.user._id };
+    if (folderId) query.folder = folderId;
+    const files = await File.find(query);
+    res.json(files);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 const deleteFile = async (req, res) => {
-  const file = await File.findById(req.params.id);
-  if (!file) return res.status(404).json({ message: "File not found" });
-  await file.remove();
-  res.json({ message: "File removed" });
+  try {
+    const file = await File.findById(req.params.id);
+    if (!file) return res.status(404).json({ message: "File not found" });
+
+    const filePath = path.join(__dirname, "../../uploads", path.basename(file.url));
+    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+
+    await File.deleteOne({ _id: file._id });
+    res.json({ message: "File deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
-module.exports = { createFile, getFiles, updateFile, deleteFile };
+module.exports = { uploadFile, getFiles, deleteFile };
